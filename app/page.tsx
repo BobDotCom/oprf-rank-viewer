@@ -14,7 +14,8 @@ export default function Home() {
                     <Typography variant="h3">OPRF Hour Tracker</Typography>
                     <Typography variant="lead">A simple viewer for the OPRF hour tracker</Typography>
                     <Typography variant="small">
-                        Note: Some results may not be included. For accurate (but slightly outdated) numbers, see <a
+                        Note: There are multiple ways to earn hours towards OPRF ranks, but this (unofficial) page only
+                        uses the flight tracker, so some results are not included. For accurate (but slightly outdated) numbers, see <a
                         href="https://opredflag.com/pages/rankshours" className="break-words text-blue-800 after:content-['_↗']">https://opredflag.com/pages/rankshours</a>.
                     </Typography>
                 </div>
