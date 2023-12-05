@@ -14,7 +14,7 @@ const Loading = () => {
     </Typography>;
 };
 
-export function Paginator({count, page, setPage}: { count: number, page: number, setPage: (x: number) => void }) {
+const Paginator = ({count, page, setPage}: { count: number, page: number, setPage: (x: number) => void }) => {
     const [pageInput, setPageInput] = useState(page);
 
     const next = () => {
@@ -99,12 +99,12 @@ const formatTimeDelta = (seconds: number) => {
 
 const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
     sortIndex: number,
-    records: any[][],
+    records: Array<string | number>[] | null,
     currentPage: number,
     itemsPerPage: number,
     sortReverse: boolean
 }) => {
-    if (records != null && records.length != 0) {
+    if (records !== null && records.length != 0) {
         if (sortReverse) {
             records.sort((a, b) => (a[sortIndex] > b[sortIndex]) ? -1 : ((b[sortIndex] > a[sortIndex]) ? 1 : 0));
         } else {
@@ -115,7 +115,7 @@ const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
         return (
             <>
                 {records.map(([callsign, model, time, last_seen], index) => {
-                    const isLast = index === records.length - 1;
+                    // const isLast = index === records.length - 1;
                     // const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
                     const classes = "p-4 border-b border-blue-gray-50"
                     return (
@@ -144,7 +144,7 @@ const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
                                     color="blue-gray"
                                     className="font-normal"
                                 >
-                                    {formatTimeDelta(time)}
+                                    {formatTimeDelta(time as number)}
                                 </Typography>
                             </td>
                             <td className={classes}>
@@ -153,7 +153,7 @@ const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
                                     color="blue-gray"
                                     className="font-normal"
                                 >
-                                    {last_seen == 0 ? "Never" : (new Date(last_seen * 1000)).toLocaleString()}
+                                    {last_seen == 0 ? "Never" : (new Date(last_seen as number * 1000)).toLocaleString()}
                                 </Typography>
                             </td>
                         </tr>
@@ -162,9 +162,15 @@ const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
             </>
         )
     } else if (records == null) {
+        // [...Array(itemsPerPage).keys()]
+        // The checker doesn't like this approach. So for now, let's do something else.
+        let x = [];
+        for (let i = 0; i < itemsPerPage; i++) {
+            x.push(i);
+        }
         return (
             <>
-                {[...Array(itemsPerPage).keys()].map((index) => {
+                {x.map((index) => {
                     const classes = "p-4 border-b border-blue-gray-50"
                     return (
                         <tr key={index}>
@@ -214,7 +220,7 @@ const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
 
 export default function Home() {
     const [sortIndex, setSortIndex] = useState(0);
-    const [records, setRecords] = useState<string[][] | null>(null);
+    const [records, setRecords] = useState<Array<string | number>[] | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useQueryState('q');
     const [caseSensitive, setCaseSensitive] = useState(false);
@@ -231,7 +237,7 @@ export default function Home() {
                     trim: true,
                     skip_empty_lines: true,
                 });
-                recordsData = recordsData.map((record: string[]) => {
+                recordsData = recordsData.map((record: Array<string | number>) => {
                     record[2] = Number(record[2]);
                     record[3] = Number(record[3]);
                     return record;
@@ -255,7 +261,7 @@ export default function Home() {
     }
     const filteredRecords = records?.filter(record => {
         if (hideZeroTime && record[2] === 0) return false;
-        record = [record[0], record[1], formatTimeDelta(record[2]), record[3] == 0 ? "Never" : (new Date(record[3] * 1000)).toLocaleString()];
+        record = [record[0], record[1], formatTimeDelta(record[2] as number), record[3] == 0 ? "Never" : (new Date(record[3] as number * 1000)).toLocaleString()];
         const terms = searchTerm?.split(",") || [];
         return terms.every(term => {
             term = term.trim()
@@ -318,7 +324,6 @@ export default function Home() {
                                     <div className=" flex flex-col md:flex-row pb-3">
                                         <div className="flex-grow">
                                             <Input
-                                                color="blue"
                                                 label="Filter"
                                                 placeholder={searchFocused ? "B-1, callsign: KODIAK" : undefined}
                                                 value={searchTerm || undefined}
@@ -369,7 +374,7 @@ export default function Home() {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <Data sortIndex={sortIndex} records={filteredRecords}
+                                            <Data sortIndex={sortIndex} records={filteredRecords || null}
                                                   currentPage={currentPage}
                                                   itemsPerPage={itemsPerPage} sortReverse={sortReverse}/>
                                             </tbody>
