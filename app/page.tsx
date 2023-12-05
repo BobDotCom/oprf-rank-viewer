@@ -13,7 +13,7 @@ export default function Home() {
                 <div className="px-4 sm:px-0">
                     <Typography variant="h3">OPRF Hour Tracker</Typography>
                     <Typography variant="lead">A simple viewer for the OPRF hour tracker</Typography>
-                    <Typography>
+                    <Typography variant="small">
                         Note: Some results may not be included. For accurate (but slightly outdated) numbers, see <a
                         href="https://opredflag.com/pages/rankshours">https://opredflag.com/pages/rankshours</a>
                     </Typography>
