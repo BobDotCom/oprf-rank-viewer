@@ -1,5 +1,5 @@
 import {Suspense, useEffect, useState} from "react";
-import {Card, Checkbox, IconButton, Input, Typography} from "@material-tailwind/react";
+import {Card, IconButton, Input, Switch, Typography} from "@material-tailwind/react";
 import {
     ArrowLeftIcon,
     ArrowRightIcon,
@@ -58,7 +58,7 @@ export const Paginator = ({count, page, setPage}: { count: number, page: number,
 
 
     return (
-        <div className="flex items-center gap-8 m-auto p-2">
+        <div className="flex items-center p-2 gap-1 sm:gap-8 justify-evenly sm:justify-center">
             <IconButton
                 size="sm"
                 variant="outlined"
@@ -71,7 +71,7 @@ export const Paginator = ({count, page, setPage}: { count: number, page: number,
                 Page <strong className="text-gray-900"><input
                 type="number"
                 value={pageInput}
-                className="text-center w-12"
+                className="text-center w-12 bg-blue-gray-50 rounded"
                 onChange={e => setPageInput(Number(e.target.value))}
                 onKeyDown={(event) => {
                     if (event.key === 'Enter') {
@@ -233,9 +233,9 @@ export const MainSkeleton = () => {
                         label="Filter"
                     />
                 </div>
-                <div className="flex justify-center">
-                    <Checkbox label="Case-sensitive" disabled/>
-                    <Checkbox label="Hide empty" disabled checked/>
+                <div className="flex sm:justify-center gap-4 md:ml-4 pt-4 md:pt-0 flex-wrap">
+                    <Switch label="Case-sensitive" disabled/>
+                    <Switch label="Hide empty" disabled checked/>
                     {/*<Skeleton containerClassName="w-[155px] flex-1 p-3 pr-0" height={20}/>*/}
                     {/*<Skeleton containerClassName="w-[130px] flex-1 p-3 pr-0" height={20}/>*/}
                 </div>
@@ -410,11 +410,17 @@ export const Main = () => {
                         onFocus={() => setSearchFocused(true)}
                         onBlur={() => setSearchFocused(false)}
                     /></div>
-                <div className="flex justify-center">
-                    <Checkbox label="Case-sensitive" checked={caseSensitive}
-                              onChange={e => setCaseSensitive(e.target.checked)}/>
-                    <Checkbox label="Hide Empty" checked={hideZeroTime}
-                              onChange={e => setHideZeroTime(e.target.checked)}/>
+                <div className="flex sm:justify-center gap-4 md:ml-4 pt-4 md:pt-0 flex-wrap">
+                    <Switch
+                        label="Case-sensitive"
+                        checked={caseSensitive}
+                        onChange={e => setCaseSensitive(e.target.checked)}
+                    />
+                    <Switch
+                        label="Hide Empty"
+                        checked={hideZeroTime}
+                        onChange={e => setHideZeroTime(e.target.checked)}
+                    />
                 </div>
             </div>
             <div className="overflow-x-scroll sm:overflow-x-auto">
