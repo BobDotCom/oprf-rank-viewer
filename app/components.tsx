@@ -417,7 +417,7 @@ export const Main = () => {
                               onChange={e => setHideZeroTime(e.target.checked)}/>
                 </div>
             </div>
-            <div className="overflow-scroll">
+            <div className="overflow-x-scroll sm:overflow-x-auto">
                 <table className="w-full min-w-max table-fixed text-left">
                     <thead>
                     <tr>
