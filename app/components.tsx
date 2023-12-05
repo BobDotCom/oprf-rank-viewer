@@ -1,6 +1,14 @@
 import {Suspense, useEffect, useState} from "react";
 import {Card, Checkbox, IconButton, Input, Typography} from "@material-tailwind/react";
-import {ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/24/outline";
+import {
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    ChevronDownIcon,
+    ChevronUpIcon,
+    ExclamationTriangleIcon,
+    MagnifyingGlassIcon
+} from "@heroicons/react/24/outline";
+// import {ExclamationTriangleIcon} from "@heroicons/react/24/solid";
 import Skeleton from "react-loading-skeleton";
 import {useQueryState} from "next-usequerystate";
 import {parse} from "csv/sync";
@@ -143,14 +151,15 @@ export const DataSkeleton = ({itemsPerPage}: { itemsPerPage: number }) => {
     )
 }
 
-export const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse}: {
+export const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse, fetchError}: {
     sortIndex: number,
     records: Array<string | number>[] | null,
     currentPage: number,
     itemsPerPage: number,
-    sortReverse: boolean
+    sortReverse: boolean,
+    fetchError: boolean
 }) => {
-    if (records !== null && records.length != 0) {
+    if (!fetchError && records !== null && records.length != 0) {
         if (sortReverse) {
             records.sort((a, b) => (a[sortIndex] > b[sortIndex]) ? -1 : ((b[sortIndex] > a[sortIndex]) ? 1 : 0));
         } else {
@@ -207,7 +216,7 @@ export const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse
                 })}
             </>
         )
-    } else if (records == null) {
+    } else if (!fetchError && records == null) {
         return <DataSkeleton itemsPerPage={itemsPerPage}/>;
     }
 }
@@ -225,8 +234,8 @@ export const MainSkeleton = () => {
                     />
                 </div>
                 <div className="flex justify-center">
-                    <Checkbox label="Case-sensitive" disabled />
-                    <Checkbox label="Hide empty" disabled checked />
+                    <Checkbox label="Case-sensitive" disabled/>
+                    <Checkbox label="Hide empty" disabled checked/>
                     {/*<Skeleton containerClassName="w-[155px] flex-1 p-3 pr-0" height={20}/>*/}
                     {/*<Skeleton containerClassName="w-[130px] flex-1 p-3 pr-0" height={20}/>*/}
                 </div>
@@ -240,13 +249,13 @@ export const MainSkeleton = () => {
                             {/*<Skeleton containerClassName="flex-1"*/}
                             {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
                             <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    Callsign
-                                </Typography>
-                                <ChevronDownIcon className="h-4 w-4" />
+                                variant="small"
+                                color="blue-gray"
+                                className="font-normal leading-none opacity-70"
+                            >
+                                Callsign
+                            </Typography>
+                            <ChevronDownIcon className="h-4 w-4"/>
                         </div>
                     </th>
                     <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
@@ -254,12 +263,12 @@ export const MainSkeleton = () => {
                             {/*<Skeleton containerClassName="flex-1"*/}
                             {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
                             <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    Model
-                                </Typography>
+                                variant="small"
+                                color="blue-gray"
+                                className="font-normal leading-none opacity-70"
+                            >
+                                Model
+                            </Typography>
                         </div>
                     </th>
                     <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
@@ -267,12 +276,12 @@ export const MainSkeleton = () => {
                             {/*<Skeleton containerClassName="flex-1"*/}
                             {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
                             <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    Time
-                                </Typography>
+                                variant="small"
+                                color="blue-gray"
+                                className="font-normal leading-none opacity-70"
+                            >
+                                Time
+                            </Typography>
                         </div>
                     </th>
                     <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
@@ -280,12 +289,12 @@ export const MainSkeleton = () => {
                             {/*<Skeleton containerClassName="flex-1"*/}
                             {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
                             <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    Last seen
-                                </Typography>
+                                variant="small"
+                                color="blue-gray"
+                                className="font-normal leading-none opacity-70"
+                            >
+                                Last seen
+                            </Typography>
                         </div>
                     </th>
                 </tr>
@@ -307,12 +316,18 @@ export const Main = () => {
     const [caseSensitive, setCaseSensitive] = useState(false);
     const [hideZeroTime, setHideZeroTime] = useState(true);
     const [sortReverse, setSortReverse] = useState(false);
+    const [fetchError, setFetchError] = useState(false);
 
     const itemsPerPage = 25;
 
     useEffect(() => {
         fetch('http://mpserver.opredflag.com/hour_output.csv')
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.text();
+            })
             .then(data => {
                 let recordsData = parse(data, {
                     trim: true,
@@ -325,6 +340,10 @@ export const Main = () => {
                 });
                 recordsData.shift();
                 setRecords(recordsData);
+            })
+            .catch(error => {
+                console.error(error);
+                setFetchError(true);
             });
     }, []);
 
@@ -380,7 +399,7 @@ export const Main = () => {
     const [searchFocused, setSearchFocused] = useState(false);
 
     return (
-        <Card className="w-full overflow-scroll">
+        <Card className="w-full overflow-hidden">
             <div className="bg-blue-gray-50 flex flex-col md:flex-row px-4 pt-4">
                 <div className="flex-grow">
                     <Input
@@ -398,53 +417,68 @@ export const Main = () => {
                               onChange={e => setHideZeroTime(e.target.checked)}/>
                 </div>
             </div>
-            <table className="w-full min-w-max table-fixed text-left">
-                <thead>
-
-                <tr>
-                    {["Callsign", "Model", "Time", "Last seen"].map((head, index) => (
-                        <th
-                            key={head}
-                            className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-                            onClick={() => {
-                                if (sortIndex == index)
-                                    setSortReverse(!sortReverse);
-                                else
-                                    setSortReverse(index == 2 || index == 3);
-                                setSortIndex(index);
-                            }}
-                        >
-                            <div className="flex gap-1">
-                                <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    {head}
-                                </Typography>
-                                {(index == 2 || index == 3 ? !sortReverse : sortReverse) ?
-                                    <ChevronUpIcon
-                                        className={`h-4 w-4 ${sortIndex === index ? "" : "opacity-0"}`}/> :
-                                    <ChevronDownIcon
-                                        className={`h-4 w-4 ${sortIndex === index ? "" : "opacity-0"}`}/>
-                                }
-                            </div>
-                        </th>
-                    ))}
-                </tr>
-                </thead>
-                <tbody>
-                <Suspense fallback={<DataSkeleton itemsPerPage={itemsPerPage}/>}>
-                    <Data sortIndex={sortIndex} records={filteredRecords || null}
-                          currentPage={currentPage}
-                          itemsPerPage={itemsPerPage} sortReverse={sortReverse}/>
-                </Suspense>
-                </tbody>
-            </table>
-            {(filteredRecords != null && filteredRecords.length == 0) &&
-                <div>
-                    <Typography className={"text-center w-full m-auto p-5"}>
+            <div className="overflow-scroll">
+                <table className="w-full min-w-max table-fixed text-left">
+                    <thead>
+                    <tr>
+                        {["Callsign", "Model", "Time", "Last seen"].map((head, index) => (
+                            <th
+                                key={head}
+                                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                                onClick={() => {
+                                    if (sortIndex == index)
+                                        setSortReverse(!sortReverse);
+                                    else
+                                        setSortReverse(index == 2 || index == 3);
+                                    setSortIndex(index);
+                                }}
+                            >
+                                <div className="flex gap-1">
+                                    <Typography
+                                        variant="small"
+                                        color="blue-gray"
+                                        className="font-normal leading-none opacity-70"
+                                    >
+                                        {head}
+                                    </Typography>
+                                    {(index == 2 || index == 3 ? !sortReverse : sortReverse) ?
+                                        <ChevronUpIcon
+                                            className={`h-4 w-4 ${sortIndex === index ? "" : "opacity-0"}`}/> :
+                                        <ChevronDownIcon
+                                            className={`h-4 w-4 ${sortIndex === index ? "" : "opacity-0"}`}/>
+                                    }
+                                </div>
+                            </th>
+                        ))}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <Suspense fallback={<DataSkeleton itemsPerPage={itemsPerPage}/>}>
+                        <Data
+                            sortIndex={sortIndex}
+                            records={filteredRecords || null}
+                            currentPage={currentPage}
+                            itemsPerPage={itemsPerPage}
+                            sortReverse={sortReverse}
+                            fetchError={fetchError}
+                        />
+                    </Suspense>
+                    </tbody>
+                </table>
+            </div>
+            {(!fetchError && filteredRecords != null && filteredRecords.length == 0) &&
+                <div className="flex justify-center items-center p-5 border-b border-blue-gray-100">
+                    <MagnifyingGlassIcon className="h-7 w-7"/>
+                    <Typography className="text-center pl-2">
                         No results
+                    </Typography>
+                </div>
+            }
+            {fetchError &&
+                <div className="flex justify-center items-center p-5 border-b border-blue-gray-100">
+                    <ExclamationTriangleIcon className="h-7 w-7"/>
+                    <Typography className="text-center pl-2">
+                        Error occurred while fetching data
                     </Typography>
                 </div>
             }
