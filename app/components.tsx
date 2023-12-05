@@ -172,9 +172,9 @@ export const Data = ({sortIndex, records, currentPage, itemsPerPage, sortReverse
                 {records.map(([callsign, model, time, last_seen], index) => {
                     // const isLast = index === records.length - 1;
                     // const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-                    const classes = "p-4 border-b border-blue-gray-50"
+                    const classes = "p-4 " // border-b border-blue-gray-50
                     return (
-                        <tr key={index}>
+                        <tr key={index} className="even:bg-blue-gray-50/50">
                             <td className={classes}>
                                 <Typography
                                     variant="small"
@@ -400,7 +400,7 @@ export const Main = () => {
 
     return (
         <Card className="w-full overflow-hidden">
-            <div className="bg-blue-gray-50 flex flex-col md:flex-row px-4 pt-4">
+            <div className="border-t border-x bg-clip-border rounded-t-xl flex flex-col md:flex-row px-4 py-4">
                 <div className="flex-grow">
                     <Input
                         label="Filter"
