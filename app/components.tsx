@@ -105,9 +105,9 @@ export const DataSkeleton = ({itemsPerPage}: { itemsPerPage: number }) => {
     return (
         <>
             {x.map((index) => {
-                const classes = "p-4 border-b border-blue-gray-50"
+                const classes = "p-4";
                 return (
-                    <tr key={index}>
+                    <tr key={index} className="even:bg-blue-gray-50/50">
                         <td className={classes}>
                             <Typography
                                 variant="small"
@@ -225,8 +225,8 @@ export const MainSkeleton = () => {
     const itemsPerPage = 25;
 
     return (
-        <Card className="w-full overflow-scroll">
-            <div className="bg-blue-gray-50 flex flex-col md:flex-row px-4 pt-4">
+        <Card className="w-full overflow-hidden">
+            <div className="border-t border-x bg-clip-border rounded-t-xl flex flex-col md:flex-row px-4 py-4">
                 <div className="flex-grow">
                     {/*<Skeleton containerClassName="flex-1" height={40}/>*/}
                     <Input
@@ -240,69 +240,71 @@ export const MainSkeleton = () => {
                     {/*<Skeleton containerClassName="w-[130px] flex-1 p-3 pr-0" height={20}/>*/}
                 </div>
             </div>
-            <table className="w-full min-w-max table-fixed text-left">
-                <thead>
+            <div className="overflow-x-scroll sm:overflow-x-auto">
+                <table className="w-full min-w-max table-fixed text-left">
+                    <thead>
 
-                <tr>
-                    <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
-                        <div className="flex gap-1">
-                            {/*<Skeleton containerClassName="flex-1"*/}
-                            {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
-                            <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-normal leading-none opacity-70"
-                            >
-                                Callsign
-                            </Typography>
-                            <ChevronDownIcon className="h-4 w-4"/>
-                        </div>
-                    </th>
-                    <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
-                        <div className="flex gap-1">
-                            {/*<Skeleton containerClassName="flex-1"*/}
-                            {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
-                            <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-normal leading-none opacity-70"
-                            >
-                                Model
-                            </Typography>
-                        </div>
-                    </th>
-                    <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
-                        <div className="flex gap-1">
-                            {/*<Skeleton containerClassName="flex-1"*/}
-                            {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
-                            <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-normal leading-none opacity-70"
-                            >
-                                Time
-                            </Typography>
-                        </div>
-                    </th>
-                    <th className="border-b bg-blue-gray-50 border-blue-gray-100 p-4">
-                        <div className="flex gap-1">
-                            {/*<Skeleton containerClassName="flex-1"*/}
-                            {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
-                            <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-normal leading-none opacity-70"
-                            >
-                                Last seen
-                            </Typography>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <DataSkeleton itemsPerPage={itemsPerPage}/>
-                </tbody>
-            </table>
+                    <tr className="even:bg-blue-gray-50/50">
+                        <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                            <div className="flex gap-1">
+                                {/*<Skeleton containerClassName="flex-1"*/}
+                                {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
+                                <Typography
+                                    variant="small"
+                                    color="blue-gray"
+                                    className="font-normal leading-none opacity-70"
+                                >
+                                    Callsign
+                                </Typography>
+                                <ChevronDownIcon className="h-4 w-4"/>
+                            </div>
+                        </th>
+                        <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                            <div className="flex gap-1">
+                                {/*<Skeleton containerClassName="flex-1"*/}
+                                {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
+                                <Typography
+                                    variant="small"
+                                    color="blue-gray"
+                                    className="font-normal leading-none opacity-70"
+                                >
+                                    Model
+                                </Typography>
+                            </div>
+                        </th>
+                        <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                            <div className="flex gap-1">
+                                {/*<Skeleton containerClassName="flex-1"*/}
+                                {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
+                                <Typography
+                                    variant="small"
+                                    color="blue-gray"
+                                    className="font-normal leading-none opacity-70"
+                                >
+                                    Time
+                                </Typography>
+                            </div>
+                        </th>
+                        <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                            <div className="flex gap-1">
+                                {/*<Skeleton containerClassName="flex-1"*/}
+                                {/*          style={{width: `${25 + Math.floor(Math.random() * 75)}%`}}/>*/}
+                                <Typography
+                                    variant="small"
+                                    color="blue-gray"
+                                    className="font-normal leading-none opacity-70"
+                                >
+                                    Last seen
+                                </Typography>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <DataSkeleton itemsPerPage={itemsPerPage}/>
+                    </tbody>
+                </table>
+            </div>
             {/*<Paginator count={totalPages} page={currentPage} setPage={setCurrentPage}/>*/}
         </Card>
     );
