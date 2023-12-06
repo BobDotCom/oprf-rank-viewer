@@ -1,18 +1,26 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import type {NextRequest} from 'next/server';
+import {NextResponse} from 'next/server';
+import {parse} from "csv/sync";
 
 export const runtime = 'edge'; // 'nodejs' is the default
 
-export function GET(request: NextRequest) {
+const fetchData = async() => {
+    const response = await fetch('http://mpserver.opredflag.com/hour_output.csv');
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    return response.text();
+}
 
-  return NextResponse.json(
-    {
-      body: request.body,
-      query: request.nextUrl.search,
-      cookies: request.cookies.getAll(),
-    },
-    {
-      status: 200,
-    },
-  );
+export async function GET(request: NextRequest) {
+    const data = await fetchData();
+
+    return NextResponse.json(
+        {
+            body: data,
+        },
+        {
+            status: 200,
+        },
+    );
 }

@@ -323,15 +323,15 @@ export const Main = () => {
     const itemsPerPage = 25;
 
     useEffect(() => {
-        fetch('http://mpserver.opredflag.com/hour_output.csv')
+        fetch('/api/get-data')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
-                return response.text();
+                return response.json();
             })
             .then(data => {
-                let recordsData = parse(data, {
+                let recordsData = parse(data.body, {
                     trim: true,
                     skip_empty_lines: true,
                 });
