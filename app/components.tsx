@@ -241,7 +241,7 @@ export const MainSkeleton = () => {
                 </div>
             </div>
             <div className="overflow-x-scroll sm:overflow-x-auto">
-                <table className="w-full min-w-max table-fixed text-left">
+                <table className="w-full table-fixed text-left">
                     <thead>
 
                     <tr className="even:bg-blue-gray-50/50">
@@ -426,7 +426,7 @@ export const Main = () => {
                 </div>
             </div>
             <div className="overflow-x-scroll sm:overflow-x-auto">
-                <table className="w-full min-w-max table-fixed text-left">
+                <table className="w-full table-fixed text-left">
                     <thead>
                     <tr>
                         {["Callsign", "Model", "Time", "Last seen"].map((head, index) => (
