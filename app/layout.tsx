@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
+import {Analytics} from '@vercel/analytics/react';
+import type {Metadata} from 'next'
 // import { Inter } from 'next/font/google'
 import './globals.css'
 
 // const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'OPRF Hour Tracker',
-  description: 'A simple viewer for the OPRF hour tracker',
+    title: 'OPRF Hour Tracker',
+    description: 'A simple viewer for the OPRF hour tracker',
 }
 
 export default function RootLayout({
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
