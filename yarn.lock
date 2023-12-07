@@ -408,6 +408,11 @@
   dependencies:
     server-only "^0.0.1"
 
+"@vercel/speed-insights@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.0.tgz#53edf7d3a510f159038f0709fc3a79de2cea30c1"
+  integrity sha512-5blmCVGGPn+3BqwBPb1jc3OnzRozNuLgJVr7xH6XjxCTvocs7z/Bml7lo+JzLKUXR1Q35qI/PlEllmNbZmP9Ew==
+
 "@zeit/schemas@2.29.0":
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/@zeit/schemas/-/schemas-2.29.0.tgz#a59ae6ebfdf4ddc66a876872dd736baa58b6696c"
