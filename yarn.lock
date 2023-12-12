@@ -2148,10 +2148,10 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-next-usequerystate@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/next-usequerystate/-/next-usequerystate-1.13.0.tgz#c33660626f56b7da1cc2e4e23c06a2f58e668240"
-  integrity sha512-5AeBzUqTcs+uNaQTYBNWNxpwvhsAOFlpJ2xKio3KDX4JVN/S2OwZGx2REw013Jx2D4yvkAyUMYOMtXRq+MVURA==
+next-usequerystate@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/next-usequerystate/-/next-usequerystate-1.13.2.tgz#e12180ffec3a03ae8296f7761d4d3eb77b7ff0ec"
+  integrity sha512-Jg6pJy/ltevoVc/Qa8Dvgz9UY5UeKsKQfELj9dNxGx2TdxiPTa5w9bfo5y0n1TKeTcnFRHIyf6PqkjLsDFuo1A==
   dependencies:
     mitt "^3.0.1"
 
