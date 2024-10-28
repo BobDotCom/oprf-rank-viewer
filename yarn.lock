@@ -414,10 +414,10 @@
   dependencies:
     server-only "^0.0.1"
 
-"@vercel/speed-insights@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.2.tgz#1bebf3e7c7046b6a911721233b263b69214ddb3e"
-  integrity sha512-y5HWeB6RmlyVYxJAMrjiDEz8qAIy2cit0fhBq+MD78WaUwQvuBnQlX4+5MuwVTWi46bV3klaRMq83u9zUy1KOg==
+"@vercel/speed-insights@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.14.tgz#75a0baa0affa8f4f5d91b6a731fe6a3b4ce07ce3"
+  integrity sha512-env1BkPddz1UaEZwBL4GmfRksMi2LbiYaKuoxMQjfLk83aEh7kkWMukkUhpQVs717NE6nnD+1+KO85GZHOZ4nQ==
 
 "@zeit/schemas@2.29.0":
   version "2.29.0"
