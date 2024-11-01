@@ -5,7 +5,7 @@ import {parse} from "csv/sync";
 export const runtime = 'edge'; // 'nodejs' is the default
 
 const fetchData = async() => {
-    const response = await fetch('http://mpserver.opredflag.com/hour_output.csv');
+    const response = await fetch('http://mpserver.opredflag.com/hour_output.csv', { cache: 'no-store' });
     if (!response.ok) {
         throw new Error(response.statusText);
     }
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
         {
             status: 200,
             headers: {
-                "Cache-Control": "max-age=10, s-maxage=1, stale-while-revalidate=3600"
+                "Cache-Control": "s-maxage=10, stale-while-revalidate=50"
             }
         },
 
