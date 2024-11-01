@@ -1,6 +1,6 @@
-import type {NextRequest} from 'next/server';
+// import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
-import {parse} from "csv/sync";
+// import {parse} from "csv/sync";
 
 export const runtime = 'edge'; // 'nodejs' is the default
 
@@ -12,7 +12,7 @@ const fetchData = async() => {
     return response.text();
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     const data = await fetchData();
 
     return NextResponse.json(
