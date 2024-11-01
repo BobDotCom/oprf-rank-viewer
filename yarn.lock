@@ -3842,17 +3842,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-usequerystate@npm:^1.20.0":
-  version: 1.20.0
-  resolution: "next-usequerystate@npm:1.20.0"
-  dependencies:
-    mitt: "npm:^3.0.1"
-  peerDependencies:
-    next: ">=13.4 <14.0.2 || ^14.0.3"
-  checksum: 10c0/b2416d2df3274808af0e5e58592ac66b9468c14fec11d103ac0827d762979a0e53590970ca454a76014472198db28877e19e1df727d33006ea758ecd40f3cc95
-  languageName: node
-  linkType: hard
-
 "next@npm:15.0.2":
   version: 15.0.2
   resolution: "next@npm:15.0.2"
@@ -3972,6 +3961,27 @@ __metadata:
   dependencies:
     path-key: "npm:^3.0.0"
   checksum: 10c0/6f9353a95288f8455cf64cbeb707b28826a7f29690244c1e4bb61ec573256e021b6ad6651b394eb1ccfd00d6ec50147253aba2c5fe58a57ceb111fad62c519ac
+  languageName: node
+  linkType: hard
+
+"nuqs@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "nuqs@npm:2.1.1"
+  dependencies:
+    mitt: "npm:^3.0.1"
+  peerDependencies:
+    "@remix-run/react": ">= 2"
+    next: ">= 14.2.0"
+    react: ">= 18.2.0"
+    react-router-dom: ">= 6"
+  peerDependenciesMeta:
+    "@remix-run/react":
+      optional: true
+    next:
+      optional: true
+    react-router-dom:
+      optional: true
+  checksum: 10c0/ceb674c1bf106db27f1f16494d70baa93f962da16b94a2ddd18a18cffa122560ad28dae2be3affbecd802e0c73d8eaa95d580a1dcd1a4e395bea4c81651ea90b
   languageName: node
   linkType: hard
 
@@ -4112,7 +4122,7 @@ __metadata:
     eslint: "npm:^9"
     eslint-config-next: "npm:15.0.2"
     next: "npm:15.0.2"
-    next-usequerystate: "npm:^1.20.0"
+    nuqs: "npm:^2.1.1"
     postcss: "npm:^8"
     react: "npm:19.0.0-rc-02c0e824-20241028"
     react-dom: "npm:19.0.0-rc-02c0e824-20241028"
