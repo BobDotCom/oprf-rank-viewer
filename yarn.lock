@@ -2136,7 +2136,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9":
+"eslint@npm:^9.14.0":
   version: 9.14.0
   resolution: "eslint@npm:9.14.0"
   dependencies:
@@ -3801,7 +3801,7 @@ __metadata:
     "@vercel/speed-insights": "npm:^1.0.14"
     autoprefixer: "npm:^10.4.20"
     csv: "npm:^6.3.10"
-    eslint: "npm:^9"
+    eslint: "npm:^9.14.0"
     eslint-config-next: "npm:15.0.2"
     next: "npm:15.0.2"
     nuqs: "npm:^2.1.1"
