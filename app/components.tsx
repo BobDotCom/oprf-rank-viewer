@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 // import {ExclamationTriangleIcon} from "@heroicons/react/24/solid";
 import Skeleton from "react-loading-skeleton";
-import {useQueryState} from "next-usequerystate";
+import {useQueryState} from "nuqs";
 import {parse} from "csv/sync";
 
 export const formatTimeDelta = (seconds: number) => {
