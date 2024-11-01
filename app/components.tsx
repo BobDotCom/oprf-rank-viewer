@@ -98,7 +98,7 @@ export const Paginator = ({count, page, setPage}: { count: number, page: number,
 export const DataSkeleton = ({itemsPerPage}: { itemsPerPage: number }) => {
     // [...Array(itemsPerPage).keys()]
     // The checker doesn't like this approach. So for now, let's do something else.
-    let x = [];
+    const x = [];
     for (let i = 0; i < itemsPerPage; i++) {
         x.push(i);
     }

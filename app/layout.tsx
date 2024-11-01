@@ -8,6 +8,7 @@ import { type ReactNode } from 'react'
 import React from 'react'
 
 declare module 'react' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface HTMLAttributes<T> {
     placeholder?: string
     onPointerEnterCapture?: React.PointerEventHandler
