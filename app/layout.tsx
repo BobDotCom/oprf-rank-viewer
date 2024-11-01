@@ -5,6 +5,16 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import './globals.css'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { type ReactNode } from 'react'
+import React from 'react'
+
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    placeholder?: string
+    onPointerEnterCapture?: React.PointerEventHandler
+    onPointerLeaveCapture?: React.PointerEventHandler
+    crossOrigin?: string
+  }
+}
 
 // const inter = Inter({ subsets: ['latin'] })
 
