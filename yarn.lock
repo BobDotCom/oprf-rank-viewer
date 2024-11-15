@@ -3806,7 +3806,7 @@ __metadata:
     next: "npm:15.0.2"
     nuqs: "npm:^2.1.1"
     postcss: "npm:^8"
-    react: "npm:19.0.0-rc-02c0e824-20241028"
+    react: "npm:19.0.0-rc.1"
     react-dom: "npm:19.0.0-rc-02c0e824-20241028"
     react-loading-skeleton: "npm:^3.5.0"
     tailwindcss: "npm:^3.4.14"
@@ -4145,10 +4145,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-02c0e824-20241028":
-  version: 19.0.0-rc-02c0e824-20241028
-  resolution: "react@npm:19.0.0-rc-02c0e824-20241028"
-  checksum: 10c0/e19a6b9310d76cbb9afcbc1de130890070a9dd0abf9de8bc66861488d3273d76f617bf8acebd5117f4b617a4d034c9175fec5accdbc94053eb37e0616531f23a
+"react@npm:19.0.0-rc.1":
+  version: 19.0.0-rc.1
+  resolution: "react@npm:19.0.0-rc.1"
+  checksum: 10c0/8f453ee0ff05ec4b11701cf4240fb0039217e73f576d2a9b871a91e34ff17d66e16294ebd0fc72c237918a3a997cc42f0328c860bc0a2cfa18e6a41f49a1c871
   languageName: node
   linkType: hard
 
