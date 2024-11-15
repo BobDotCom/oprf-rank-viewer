@@ -17,8 +17,8 @@
     "csv": "^6.3.10",
     "next": "15.0.2",
     "nuqs": "^2.1.1",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "react": "19.0.0-rc.1",
+    "react-dom": "19.0.0-rc.1",
     "react-loading-skeleton": "^3.5.0"
   },
   "devDependencies": {
