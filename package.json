@@ -16,7 +16,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "csv": "^6.3.10",
     "next": "15.0.3",
-    "nuqs": "^2.2.1",
+    "nuqs": "^2.2.2",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
     "react-loading-skeleton": "^3.5.0"
