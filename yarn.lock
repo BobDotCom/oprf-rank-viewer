@@ -3647,24 +3647,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuqs@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "nuqs@npm:2.2.1"
+"nuqs@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "nuqs@npm:2.3.2"
   dependencies:
     mitt: "npm:^3.0.1"
   peerDependencies:
     "@remix-run/react": ">=2"
     next: ">=14.2.0"
     react: ">=18.2.0 || ^19.0.0-0"
-    react-router-dom: ">=6"
+    react-router: ^6 || ^7
+    react-router-dom: ^6 || ^7
   peerDependenciesMeta:
     "@remix-run/react":
       optional: true
     next:
       optional: true
+    react-router:
+      optional: true
     react-router-dom:
       optional: true
-  checksum: 10c0/3c2c807c7fd3e0b3543ec90da3e54c041d5172a878978ddd18bf7db4a6f5b9b0db35340d4bfa952bc63b34470280896297ea8f2c9ff9bb05c0cef934e9e5c5b7
+  checksum: 10c0/39cbaf3f0363b3cd3a6de5c87cb7c67a411428aab8deb71c92d21c592b5298eac7acb335b3f6757140fd673921ceff43c95b59cb56b9dd6c26c313bd9260ac07
   languageName: node
   linkType: hard
 
@@ -3780,7 +3783,7 @@ __metadata:
     eslint: "npm:^9.15.0"
     eslint-config-next: "npm:15.0.3"
     next: "npm:15.0.3"
-    nuqs: "npm:^2.2.1"
+    nuqs: "npm:^2.3.2"
     postcss: "npm:^8"
     react: "npm:19.0.0-rc.1"
     react-dom: "npm:19.0.0-rc.1"
