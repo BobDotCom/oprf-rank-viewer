@@ -857,9 +857,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/analytics@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@vercel/analytics@npm:1.4.0"
+"@vercel/analytics@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@vercel/analytics@npm:1.5.0"
   peerDependencies:
     "@remix-run/react": ^2
     "@sveltejs/kit": ^1 || ^2
@@ -883,7 +883,7 @@ __metadata:
       optional: true
     vue-router:
       optional: true
-  checksum: 10c0/5e26d974e7cc5be9b72f8cda149ca5fd5fbce07905a1b067e48e329b69471907097286f2e09325267869e2a2fb859b460111810493a8bd64b1571bb0710f1881
+  checksum: 10c0/43d33ea83b32f5203fec21b7f43c399e398f0c37d2dd341d522969e0e6ee23fd652a2766a4203a3ce573f711beee5ee1ab7d36316f767a4901160e3e96ee31e5
   languageName: node
   linkType: hard
 
@@ -3773,7 +3773,7 @@ __metadata:
     "@types/node": "npm:^22"
     "@types/react": "npm:types-react@19.0.0-rc.1"
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    "@vercel/analytics": "npm:^1.4.0"
+    "@vercel/analytics": "npm:^1.5.0"
     "@vercel/speed-insights": "npm:^1.1.0"
     autoprefixer: "npm:^10.4.20"
     csv: "npm:^6.3.10"
